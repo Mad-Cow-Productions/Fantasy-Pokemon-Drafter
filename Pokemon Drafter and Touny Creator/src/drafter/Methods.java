@@ -18,7 +18,24 @@ public class Methods {
 		}
 	}
 	public void writeToFile(){
-		
+		FileOutputStream fop = new FileOutputStream(draftList, true);
+		try{
+		fop = new FileOutputStream(draftList);
+		draftList.createNewFile();
+		byte[] draftPickInBytes = draftPick.getBytes();
+		fop.write('\n');
+		fop.write(draftPickInBytes);
+		} catch (IOException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				if (fop != null){
+					fop.close();
+				}
+			} catch(IOException e){
+				e.printStackTrace();
+			}
+		}
 	}
 	public Methods(){
 		

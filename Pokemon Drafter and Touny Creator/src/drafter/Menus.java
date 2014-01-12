@@ -33,6 +33,11 @@ public class Menus {
 	private static int count = 0;
 	
 	
+	
+	
+	private static JFrame draft;
+	
+	
 	public Menus(){
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		enterNames = new JFrame();
@@ -83,7 +88,7 @@ public class Menus {
 	static class moveOn implements ActionListener{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) { // in this method the names of the contestants are saved to 
 			String text = textFieldNames.getText();
 			
 			contestantsNames[count] = text;
@@ -91,12 +96,21 @@ public class Menus {
 			textFieldNames.setText(" ");
 			count++;
 			if(count >= numberOfContestants){
-				textFieldNames.setText("No More Writing");
-				textFieldNames.setEditable(false);
-				enterNames.setVisible(true);
+				enterNames.setVisible(false);
+				pickPokemon();
 			}else{
 			enterNames.setVisible(true);
 			}
+			
+		}
+
+		private void pickPokemon() {
+			draft = new JFrame("Drafter");
+			draft = new JFrame();
+			draft.setLocation(0,0);							//this is where the JFrame is created and configured
+			draft.setLayout(null);
+			draft.setSize(500, 500); //gets the screen size and sets the JFrame to fit the whole screen
+			draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		}
 		

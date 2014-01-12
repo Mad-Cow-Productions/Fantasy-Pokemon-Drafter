@@ -1,5 +1,6 @@
 package drafter;
 import java.io.*;
+import java.util.Random;
 
 public class Methods {
 	String fileName = "C:" + File.separator + "Pokemon Showdown Drafter" + File.separator + "Draft List.txt";
@@ -37,6 +38,10 @@ public class Methods {
 				e.printStackTrace();
 			}
 		}
+	}
+	public int pickPerson(String[] drafterList){
+		Random rnd = new Random();
+		int rand = rnd.nextInt(numberOfContestants);
 	}
 	public Methods(){
 		

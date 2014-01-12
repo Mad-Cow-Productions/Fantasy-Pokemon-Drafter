@@ -2,6 +2,7 @@ package drafter;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 
 import javax.swing.*;
 
@@ -13,6 +14,7 @@ public class Menus {
 	private JLabel label;
 	private static JTextArea textarea;
 	private JButton acceptchoices;
+	public Array contestantsNames;
 	
 	public Menus(){
 		frame = new JFrame("Pokemon Drafter");
@@ -51,6 +53,25 @@ public class Menus {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//whatever goes here will be executed only when the button "acceptchoice' is pressed
+			String text = textarea.getText();
+			
+			
+			JFrame testFrame = new JFrame("Test");
+			testFrame.setLocation(0,0);							
+			testFrame.setLayout(null);
+			testFrame.setSize(500, 500); 
+			testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			JLabel testLabel = new JLabel();
+			testLabel.setBounds(40,40,100,50);
+			if(text.contains(",")) {
+				testLabel.setText("False");
+			}else{
+				testLabel.setText(text);
+			}
+			testFrame.add(testLabel);
+			testFrame.setVisible(true);
+		
 		}
 		
 	}
@@ -58,7 +79,7 @@ public class Menus {
 	public static void main(String[] args) {
 		Menus test = new Menus();
 		test.setOpen(true);
-
+		
 	}
 
 }

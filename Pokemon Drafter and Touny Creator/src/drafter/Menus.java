@@ -7,6 +7,7 @@ import javax.swing.*;
 
  
 
+
 public class Menus {
 	private JFrame frame;
 	private JLabel label;

@@ -25,6 +25,7 @@ public class Methods {
 		byte[] draftPickInBytes = draftPick.getBytes();
 		fop.write('\n');
 		fop.write(draftPickInBytes);
+		fop.close();
 		} catch (IOException e){
 			e.printStackTrace();
 		} finally {

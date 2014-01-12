@@ -6,6 +6,7 @@ import java.lang.reflect.Array;
 
 import javax.swing.*;
 
+
  
 
 
@@ -79,6 +80,8 @@ public class Menus {
 	public static void main(String[] args) {
 		Menus test = new Menus();
 		test.setOpen(true);
+		Methods method = new Methods();
+		method.createDir();
 		
 	}
 

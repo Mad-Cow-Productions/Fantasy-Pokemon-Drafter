@@ -11,5 +11,8 @@ public class Methods {
 	public void writeToFile(){
 		
 	}
+	public Methods(){
+		
+	}
 	//
 }

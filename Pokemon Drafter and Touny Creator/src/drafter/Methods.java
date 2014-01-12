@@ -2,11 +2,20 @@ package drafter;
 import java.io.*;
 
 public class Methods {
-	//Writes to a file in the format Chooser then Pokemon chosen
+	String fileName = "C:" + File.separator + "Pokemon Showdown Drafter" + File.separator + "Draft List.txt";
+	File draftList = new File(fileName);
+	String mainDirName = "C:" + File.separator + "Pokemon Showdown Drafter";
+	File mainDir = new File(mainDirName);
+
 	public void createDir(){
-		String mainDirName = "C:" + File.separator + "Pokemon Showdown Drafter";
-		File mainDir = new File(mainDirName);
 		mainDir.mkdir();
+	}
+	public void createFile(){
+		try {
+			draftList.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	public void writeToFile(){
 		

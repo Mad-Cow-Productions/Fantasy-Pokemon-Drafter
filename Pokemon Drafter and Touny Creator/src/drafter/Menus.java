@@ -28,7 +28,7 @@ public class Menus {
 	private static JTextField textFieldNames;
 	private static JButton confirmNumber;
 	public  static String[] contestantsNames;
-	private static int numberOfContestants;
+	public static int numberOfContestants;
 	private static JButton moveOn;
 	private static int count = 0;
 	

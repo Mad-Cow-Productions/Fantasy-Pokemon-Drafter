@@ -20,14 +20,17 @@ public class Menus {
 	private static JButton moveOn;
 	private static int count = 0;
 	private String draftPick;
+	Methods method = new Methods();
 	
 	
 	
 	
 	private static JFrame draft;
 	
-	
 	public Menus(){
+		
+	}
+	public static void Initiate(){
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		enterNames = new JFrame();
 		enterNames.setLocation(0,0);							//this is where the JFrame is created and configured
@@ -111,19 +114,19 @@ public class Menus {
 	}
 	
 	
-	public static int getNumberOfContestants(){
+	public int getNumberOfContestants(){
 		
 		return numberOfContestants;
 		
 	}
 	
-	public static String[][] getContestantsNames(){
+	public String[][] getContestantsNames(){
 		return contestantsNames;
 	}
 		
 	
 	public static void main(String[] args) {
-		Menus test = new Menus();
+		Initiate();
 		
 	
 	}

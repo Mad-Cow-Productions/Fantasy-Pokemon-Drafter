@@ -103,7 +103,7 @@ public class Menus {
 			
 			JLabel hellLabel = new JLabel();
 			
-			String nameOfNextContestant = contestantsNames[][].binarySearch("1", 0, 7);
+			String nameOfNextContestant = ;
 			JLabel.setText("Hello ");
 			
 		}
@@ -118,7 +118,7 @@ public class Menus {
 	}
 	
 	public static String[][] getContestantsNames(){
-		return contestantsNames[][];
+		return contestantsNames;
 	}
 		
 	

@@ -101,10 +101,10 @@ public class Menus {
 			draft.setSize(500, 500); //gets the screen size and sets the JFrame to fit the whole screen
 			draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
-			JLabel hellLabel = new JLabel();
+			JLabel helloLabel = new JLabel();
 			
-			String nameOfNextContestant = ;
-			JLabel.setText("Hello ");
+			
+			
 			
 		}
 		

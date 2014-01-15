@@ -42,21 +42,21 @@ public class Methods extends Menus{
 		}
 	}
 	public int pickPerson(String[][] drafterList){
-		getNumberOfContestants();
+	
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
 		return rand;
 	}
 	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
-		
+	
         if(roundNumber > 10) {
                 return false;
         }else{
 
                 for(int i=0; i > numberOfContestants; i++){
 
-                        int newPos = -(namesOfContestants[i][1]) +(numberOfContestants - 1);
-                        namesofContestants[i][1] = newPos;
+                        int newPos = -(contestantsNames[i][1]) +(numberOfContestants - 1);
+                        contestantsNames[i][1] = newPos;
 
                 }
                 

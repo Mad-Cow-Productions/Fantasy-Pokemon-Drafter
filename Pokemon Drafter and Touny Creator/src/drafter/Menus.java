@@ -101,15 +101,24 @@ public class Menus {
 			draft.setSize(500, 500); //gets the screen size and sets the JFrame to fit the whole screen
 			draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
+			JLabel hellLabel = new JLabel();
+			
+			String nameOfNextContestant = contestantsNames[][].binarySearch("1", 0, 7);
+			JLabel.setText("Hello ");
+			
 		}
 		
 	}
 	
 	
-	public int getNumberOfContestants(){
+	public static int getNumberOfContestants(){
 		
 		return numberOfContestants;
 		
+	}
+	
+	public static String[][] getContestantsNames(){
+		return contestantsNames[][];
 	}
 		
 	

@@ -1,6 +1,7 @@
 package drafter;
 import java.io.*;
 import java.util.Random;
+import java.lang.StringBuilder;
 
 public class Methods{
 	String fileName = "C:" + File.separator + "Pokemon Showdown Drafter" + File.separator + "Draft List.txt";
@@ -42,16 +43,25 @@ public class Methods{
 			}
 		}
 	}
-	public String[][] pickPerson(String[][] drafterList){
-	menu.getNumberOfContestants();
-	menu.getContestantsNames();
+	public String[][] pickPerson(){
+	int numberOfContestants = menu.getNumberOfContestants();
+	String[][] contestantsNames = menu.getContestantsNames();
+	StringBuilder randContain = new StringBuilder();
+	for(int e = 0; e > numberOfContestants; e++){ //Possible off by one bug
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
+		randContain.append(rand);
+		while(randContain.toString().contains(String.valueOf(rand)) ){
+			rand = rnd.nextInt(numberOfContestants);
+		}
+		contestantsNames [1][e] = String.valueOf(rand); 
+		}
+		return contestantsNames;
 		
 	}
 	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
-	menu.getContestantsNames();
-	menu.getNumberOfContestants();
+	String[][] contestantsNames = menu.getContestantsNames();
+	int numberOfContestants = menu.getNumberOfContestants();
         if(roundNumber > 10) {
                 return false;
         }else{

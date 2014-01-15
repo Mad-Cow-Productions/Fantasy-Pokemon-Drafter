@@ -42,22 +42,22 @@ public class Methods extends Menus{
 		}
 	}
 	public int pickPerson(String[][] drafterList){
-	Menus.getNumberOfContestants()
+	Menus.getNumberOfContestants();
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
 		return rand;
 	}
 	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
 	Menus.getContestantsNames();
-	Menus.getNumberOfContestants()
+	Menus.getNumberOfContestants();
         if(roundNumber > 10) {
                 return false;
         }else{
 
                 for(int i=0; i > numberOfContestants; i++){
-
-                        int newPos = -(contestantsNames[i][1]) +(numberOfContestants - 1);
-                        contestantsNames[i][1] = newPos;
+                	int number = Integer.parseInt(contestantsNames[i][1]);
+                        int newPos = -(number) +(numberOfContestants - 1);
+                        contestantsNames[i][1] = String.valueOf(newPos);
 
                 }
                 

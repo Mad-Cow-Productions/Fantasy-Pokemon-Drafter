@@ -42,13 +42,14 @@ public class Methods extends Menus{
 		}
 	}
 	public int pickPerson(String[][] drafterList){
-	
+	Menus.getNumberOfContestants()
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
 		return rand;
 	}
 	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
-	
+	Menus.getContestantsNames();
+	Menus.getNumberOfContestants()
         if(roundNumber > 10) {
                 return false;
         }else{

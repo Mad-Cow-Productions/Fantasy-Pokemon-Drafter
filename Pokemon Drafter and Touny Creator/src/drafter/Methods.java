@@ -2,7 +2,7 @@ package drafter;
 import java.io.*;
 import java.util.Random;
 
-public class Methods {
+public class Methods extends Menus{
 	String fileName = "C:" + File.separator + "Pokemon Showdown Drafter" + File.separator + "Draft List.txt";
 	File draftList = new File(fileName);
 	String mainDirName = "C:" + File.separator + "Pokemon Showdown Drafter";
@@ -25,7 +25,6 @@ public class Methods {
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		try{
 		fop = new FileOutputStream(draftList);
-		draftList.createNewFile();
 		byte[] draftPickInBytes = draftPick.getBytes();
 		fop.write('\n');
 		fop.write(draftPickInBytes);
@@ -42,13 +41,14 @@ public class Methods {
 			}
 		}
 	}
-	public int pickPerson(String[] drafterList){
+	public int pickPerson(String[][] drafterList){
+		getNumberOfContestants();
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
 		return rand;
 	}
 	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
-
+		
         if(roundNumber > 10) {
                 return false;
         }else{

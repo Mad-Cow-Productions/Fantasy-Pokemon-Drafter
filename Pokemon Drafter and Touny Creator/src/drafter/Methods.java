@@ -50,10 +50,10 @@ public class Methods{
 	for(int e = 0; e > numberOfContestants; e++){ //Possible off by one bug
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
-		randContain.append(rand);
 		while(randContain.toString().contains(String.valueOf(rand)) ){
 			rand = rnd.nextInt(numberOfContestants);
 		}
+		randContain.append(rand);
 		contestantsNames [1][e] = String.valueOf(rand); 
 		}
 		return contestantsNames;

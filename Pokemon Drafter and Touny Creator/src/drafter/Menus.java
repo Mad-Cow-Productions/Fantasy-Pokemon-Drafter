@@ -27,7 +27,7 @@ public class Menus {
 	private static JFrame enterNames;
 	private static JTextField textFieldNames;
 	private static JButton confirmNumber;
-	public  static String[] contestantsNames;
+	public  static String[][] contestantsNames;
 	public static int numberOfContestants;
 	private static JButton moveOn;
 	private static int count = 0;
@@ -67,7 +67,7 @@ public class Menus {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			numberOfContestants = Integer.parseInt(textFieldNames.getText());
-			contestantsNames = new String[numberOfContestants];
+			contestantsNames = new String[numberOfContestants][1];
 			enterNames.setVisible(false);
 			enterNames.remove(confirmNumber);
 			textFieldNames.setText(" ");
@@ -91,7 +91,7 @@ public class Menus {
 		public void actionPerformed(ActionEvent e) { // in this method the names of the contestants are saved to 
 			String text = textFieldNames.getText();
 			
-			contestantsNames[count] = text;
+			contestantsNames[count][0] = text;
 			enterNames.setVisible(false);
 			textFieldNames.setText(" ");
 			count++;
@@ -113,6 +113,12 @@ public class Menus {
 			draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			
 		}
+		
+	}
+	
+	public int getNumberOfContestants(){
+		
+		return numberOfContestants;
 		
 	}
 		/*frame = new JFrame("Pokemon Drafter");

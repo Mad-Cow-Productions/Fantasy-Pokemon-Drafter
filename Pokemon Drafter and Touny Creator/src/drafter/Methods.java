@@ -10,8 +10,8 @@ public class Methods{
 	File mainDir = new File(mainDirName);
 	String configFileName = "C:" + File.separator + "Pokemon Showdown Drafter" + File.separator + "Valid Pokemon Config.txt";
 	File configFile = new File(configFileName);
-	private String validPokemon;
 	Menus menu = new Menus();
+	private String validPokemon;
 
 	public void createDir(){
 		mainDir.mkdir();
@@ -85,7 +85,7 @@ public class Methods{
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
 
 		readConfig();
-        /*if(validPokemon.contains(pokemonChoice)){
+        if(validPokemon.contains(pokemonChoice)){
 
         return true;
         
@@ -93,8 +93,7 @@ public class Methods{
 
         return false;   
         
-        }*/
-		return false;
+        }
        
 
 }
@@ -106,7 +105,7 @@ public class Methods{
         configByte = new byte[configLength];
         configStream.read(configByte);
         configStream.close();
-        validPokemon = new String(configByte);
+        String validPokemon = new String(configByte);
         } catch (FileNotFoundException fnfe) {
         	
         } catch (IOException ioe){

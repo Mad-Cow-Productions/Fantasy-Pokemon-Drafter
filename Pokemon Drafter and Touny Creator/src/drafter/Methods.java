@@ -27,8 +27,8 @@ public class Methods{
 	}
 	
 	@SuppressWarnings("resource")
-	public void writeToFile(){
-		draftPick = menu.getDraftPick();
+	public void writeToFile(String Person, String Pick){
+		draftPick = Person + "; " + Pick;
 		try{
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		fop = new FileOutputStream(draftList);

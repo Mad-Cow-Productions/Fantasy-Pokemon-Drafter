@@ -1,4 +1,6 @@
 package drafter;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +21,18 @@ public class Menus {
 	public static int numberOfContestants;
 	private static JButton moveOn;
 	private static int count = 0;
-	private String draftPick;
-	Methods method = new Methods();
+	public static String draftPick;
+	public static int roundNumber = 0;
+	static Methods method = new Methods();
+	public static String numberOfPos;
+	private static String nextPerson;
+	private static JTextField enterPokemon;
+	private static String pokemonChoice;
+	private static Color red = new Color(250,0,0);
+	private static Color black = new Color(0,0,0);
+	private static Toolkit tk = Toolkit.getDefaultToolkit();
+	
+	
 	
 	
 	
@@ -31,7 +43,7 @@ public class Menus {
 		
 	}
 	public static void Initiate(){
-		Toolkit tk = Toolkit.getDefaultToolkit();
+		
 		enterNames = new JFrame();
 		enterNames.setLocation(0,0);							//this is where the JFrame is created and configured
 		enterNames.setLayout(null);
@@ -52,6 +64,9 @@ public class Menus {
 		enterNames.add(confirmNumber);
 		
 		enterNames.setVisible(true);
+		
+		enterPokemon = new JTextField();
+		enterPokemon.setBounds(250, 250, 200, 50);
 	}
 	
 	static class confirmNumber implements ActionListener{
@@ -59,7 +74,7 @@ public class Menus {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			numberOfContestants = Integer.parseInt(textFieldNames.getText());
-			contestantsNames = new String[numberOfContestants][1];
+			contestantsNames = new String[numberOfContestants][2];
 			enterNames.setVisible(false);
 			enterNames.remove(confirmNumber);
 			textFieldNames.setText(" ");
@@ -77,6 +92,58 @@ public class Menus {
 		
 	}
 	
+	static class nextChoiceOfPerson implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			pokemonChoice = enterPokemon.getText();
+			draft.setVisible(false);
+			
+			if(method.checkValidChoice(pokemonChoice)){
+				
+				enterPokemon.setText(" ");
+				enterPokemon.setForeground(black);
+				
+				draftPick = nextPerson + pokemonChoice;
+				
+				numberOfPos = String.valueOf(Integer.parseInt(numberOfPos) + 1);
+				
+				
+				if(Integer.parseInt(numberOfPos) < numberOfContestants - 1){
+					
+					pickPokemon(numberOfPos);
+					
+				}else{
+					roundNumber = roundNumber + 1;
+					
+					if(roundNumber > 10){
+						
+					}else{
+						contestantsNames = method.getNextRoundOrder();
+						pickPokemon("0");
+					}
+					
+				}
+				
+			}else{
+				
+				enterPokemon.setForeground(red);
+				enterPokemon.setText("That is not a valid Choice");
+				draft.setVisible(true);
+				
+			}
+			
+			
+			
+		}
+
+	
+		
+		
+		
+		
+	}
+	
 	static class moveOn implements ActionListener{
 
 		@Override
@@ -84,32 +151,92 @@ public class Menus {
 			String text = textFieldNames.getText();
 			
 			contestantsNames[count][0] = text;
+			
+			
+			
+			
 			enterNames.setVisible(false);
 			textFieldNames.setText(" ");
 			count++;
 			if(count >= numberOfContestants){
 				enterNames.setVisible(false);
-				pickPokemon();
+				pickPokemon("0");
 			}else{
 			enterNames.setVisible(true);
 			}
 			
 		}
 
-		private void pickPokemon() {
-			draft = new JFrame("Drafter");
-			draft = new JFrame();
-			draft.setLocation(0,0);							//this is where the JFrame is created and configured
-			draft.setLayout(null);
-			draft.setSize(500, 500); //gets the screen size and sets the JFrame to fit the whole screen
-			draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+		
+		
+		
+	}
+	
+	public static void pickPokemon(String posNumber) {
+		numberOfPos = posNumber;
+		
+		
+		
+		draft = new JFrame("Drafter");
+		draft = new JFrame();
+		draft.setLocation(0,0);							//this is where the JFrame is created and configured
+		draft.setLayout(null);
+		draft.setSize(tk.getScreenSize().width, tk.getScreenSize().height); //gets the screen size and sets the JFrame to fit the whole screen
+		draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JLabel helloLabel = new JLabel();
+		contestantsNames = method.pickPerson();
+		
+		/*for(int i = 0; i < numberOfContestants; i++){
 			
-			JLabel helloLabel = new JLabel();
+			for(int e = 0; e <= 1; e++){
+				
+				System.out.println(contestantsNames[i][e]);
+				
+			}
 			
+		}*/
+		int indexOfPos = getIndexOf(numberOfPos, contestantsNames);
+		//System.out.println(indexOfPos);
+		nextPerson = contestantsNames[indexOfPos][0];
+		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below");
+		helloLabel.setBounds(250, 100, 300, 50);
+		draft.add(helloLabel);
+		
+		
+		draft.add(enterPokemon);
+		
+		JButton nextChoice = new JButton();
+		nextChoice.setText("Finalize your Decision");
+		nextChoice.setBounds(475, 250, 25,25);
+		nextChoice.addActionListener(new nextChoiceOfPerson());
+		draft.add(nextChoice);
+		
+		draft.setVisible(true);
+		
+		
+		
+		
+	}
+	
+	
+	public static int getIndexOf(String toSearch, String[][] tab ){
+		
+		
+		for(int s = 0; s < numberOfContestants; s++){
 			
+			if(contestantsNames[s][1].equalsIgnoreCase(toSearch)){
+				
+				return s;
+			}
 			
 			
 		}
+		
+		return -1;
+		
 		
 	}
 	
@@ -127,6 +254,11 @@ public class Menus {
 	
 	public static void main(String[] args) {
 		Initiate();
+		
+		
+		
+		
+		
 		
 	
 	}

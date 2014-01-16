@@ -23,7 +23,9 @@ public class Methods{
 			e.printStackTrace();
 		}
 	}
+	
 	public void writeToFile(){
+		
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		try{
 		fop = new FileOutputStream(draftList);
@@ -47,41 +49,43 @@ public class Methods{
 	int numberOfContestants = menu.getNumberOfContestants();
 	String[][] contestantsNames = menu.getContestantsNames();
 	StringBuilder randContain = new StringBuilder();
-	for(int e = 0; e > numberOfContestants; e++){ //Possible off by one bug
+	for(int e = 0; e < numberOfContestants; e++){ //Possible off by one bug
 		Random rnd = new Random();
 		int rand = rnd.nextInt(numberOfContestants);
 		while(randContain.toString().contains(String.valueOf(rand)) ){
 			rand = rnd.nextInt(numberOfContestants);
 		}
 		randContain.append(rand);
-		contestantsNames [1][e] = String.valueOf(rand); 
+		contestantsNames [e][1] = String.valueOf(rand); 
 		}
 		return contestantsNames;
 		
 	}
-	public boolean getNextRoundOrder(int roundNumber){ //this method will choose the order of the next round for each contestant
+	public String[][] getNextRoundOrder(){ //this method will choose the order of the next round for each contestant
 	String[][] contestantsNames = menu.getContestantsNames();
 	int numberOfContestants = menu.getNumberOfContestants();
-        if(roundNumber > 10) {
-                return false;
-        }else{
+        
+                
+        
 
                 for(int i=0; i > numberOfContestants; i++){
                 	int number = Integer.parseInt(contestantsNames[i][1]);
                         int newPos = -(number) +(numberOfContestants - 1);
                         contestantsNames[i][1] = String.valueOf(newPos);
 
-                }
                 
-                return true;
+                
+                
                 
 
-        }
+                }
+                return contestantsNames;
 
 	}
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
 
-        if(validPokemon.contains(pokemonChoice)){
+		readConfig();
+        /*if(validPokemon.contains(pokemonChoice)){
 
         return true;
         
@@ -89,7 +93,8 @@ public class Methods{
 
         return false;   
         
-        }
+        }*/
+		return false;
        
 
 }
@@ -101,7 +106,7 @@ public class Methods{
         configByte = new byte[configLength];
         configStream.read(configByte);
         configStream.close();
-        String validPokemon = new String(configByte);
+        validPokemon = new String(configByte);
         } catch (FileNotFoundException fnfe) {
         	
         } catch (IOException ioe){

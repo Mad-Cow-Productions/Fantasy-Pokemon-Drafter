@@ -105,7 +105,9 @@ public class Menus {
 				enterPokemon.setText(" ");
 				enterPokemon.setForeground(black);
 				
-				draftPick = nextPerson + ": " + pokemonChoice;
+				draftPick = nextPerson + "  " + pokemonChoice;
+				
+				method.writeToFile();
 				
 				numberOfPos = String.valueOf(Integer.parseInt(numberOfPos) + 1);
 				

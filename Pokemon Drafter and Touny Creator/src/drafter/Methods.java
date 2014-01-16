@@ -13,6 +13,7 @@ public class Methods{
 	Menus menu = new Menus();
 	private String validPokemon;
 	private String draftPick;
+	private StringBuilder checkValidBuilder = new StringBuilder(validPokemon);
 
 	public void createDir(){
 		mainDir.mkdir();
@@ -38,6 +39,7 @@ public class Methods{
 		} catch (IOException e){
 			e.printStackTrace();
 		} 
+		
 	}
 	public String[][] pickPerson(){
 	int numberOfContestants = menu.getNumberOfContestants();
@@ -78,8 +80,7 @@ public class Methods{
 	}
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
 
-		readConfig();
-        if(validPokemon.contains(pokemonChoice)){
+        if(checkValidBuilder.toString().contains(pokemonChoice)){
 
         return true;
         
@@ -99,7 +100,7 @@ public class Methods{
         configByte = new byte[configLength];
         configStream.read(configByte);
         configStream.close();
-        String validPokemon = new String(configByte); //valid pokemon may not carry over to other method
+        validPokemon = new String(configByte); 
         } catch (FileNotFoundException fnfe) {
         	
         } catch (IOException ioe){

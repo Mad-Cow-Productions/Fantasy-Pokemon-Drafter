@@ -43,7 +43,8 @@ public class Menus {
 		
 	}
 	public static void Initiate(){
-		
+		method.createDir();
+		method.createFile();
 		enterNames = new JFrame();
 		enterNames.setLocation(0,0);							//this is where the JFrame is created and configured
 		enterNames.setLayout(null);
@@ -104,7 +105,7 @@ public class Menus {
 				enterPokemon.setText(" ");
 				enterPokemon.setForeground(black);
 				
-				draftPick = nextPerson + pokemonChoice;
+				draftPick = nextPerson + ": " + pokemonChoice;
 				
 				numberOfPos = String.valueOf(Integer.parseInt(numberOfPos) + 1);
 				
@@ -249,6 +250,9 @@ public class Menus {
 	
 	public String[][] getContestantsNames(){
 		return contestantsNames;
+	}
+	public String getDraftPick(){
+		return draftPick;
 	}
 		
 	

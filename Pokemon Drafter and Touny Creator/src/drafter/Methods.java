@@ -12,6 +12,7 @@ public class Methods{
 	File configFile = new File(configFileName);
 	Menus menu = new Menus();
 	private String validPokemon;
+	private String draftPick;
 
 	public void createDir(){
 		mainDir.mkdir();
@@ -24,10 +25,11 @@ public class Methods{
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public void writeToFile(){
-		
-		FileOutputStream fop = new FileOutputStream(draftList, true);
+		draftPick = menu.getDraftPick();
 		try{
+		FileOutputStream fop = new FileOutputStream(draftList, true);
 		fop = new FileOutputStream(draftList);
 		byte[] draftPickInBytes = draftPick.getBytes();
 		fop.write('\n');
@@ -35,15 +37,7 @@ public class Methods{
 		fop.close();
 		} catch (IOException e){
 			e.printStackTrace();
-		} finally {
-			try {
-				if (fop != null){
-					fop.close();
-				}
-			} catch(IOException e){
-				e.printStackTrace();
-			}
-		}
+		} 
 	}
 	public String[][] pickPerson(){
 	int numberOfContestants = menu.getNumberOfContestants();
@@ -105,7 +99,7 @@ public class Methods{
         configByte = new byte[configLength];
         configStream.read(configByte);
         configStream.close();
-        String validPokemon = new String(configByte);
+        String validPokemon = new String(configByte); //valid pokemon may not carry over to other method
         } catch (FileNotFoundException fnfe) {
         	
         } catch (IOException ioe){

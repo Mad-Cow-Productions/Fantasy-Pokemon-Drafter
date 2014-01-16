@@ -13,6 +13,7 @@ public class Methods{
 	Menus menu = new Menus();
 	private String validPokemon;
 	private String draftPick;
+	StringBuilder chosen = new StringBuilder();
 	
 
 	public void createDir(){
@@ -27,19 +28,17 @@ public class Methods{
 	}
 	
 	@SuppressWarnings("resource")
-	public void writeToFile(String person, String pick){
-		draftPick = person + "; " + pick;
+	public void writeToFile(){
 		try{
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		fop = new FileOutputStream(draftList);
-		byte[] draftPickInBytes = draftPick.getBytes();
-		fop.write('\n');
+		byte[] draftPickInBytes = chosen.toString().getBytes();
 		fop.write(draftPickInBytes);
 		fop.close();
 		} catch (IOException e){
 			e.printStackTrace();
 		} 
-		validPokemon.replaceFirst(pick, "");
+		
 		
 		
 	}
@@ -109,6 +108,10 @@ public class Methods{
         	
         }
         
+	}
+	public void writeToString(String chooser, String pick){
+		chosen.append(chooser + "  " + pick);
+		validPokemon.replaceFirst(pick, "");
 	}
 	
 	public Methods(){

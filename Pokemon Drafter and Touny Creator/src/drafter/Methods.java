@@ -13,7 +13,7 @@ public class Methods{
 	Menus menu = new Menus();
 	private String validPokemon;
 	private String draftPick;
-	private StringBuilder checkValidBuilder = new StringBuilder(validPokemon);
+	
 
 	public void createDir(){
 		mainDir.mkdir();
@@ -27,8 +27,8 @@ public class Methods{
 	}
 	
 	@SuppressWarnings("resource")
-	public void writeToFile(String Person, String Pick){
-		draftPick = Person + "; " + Pick;
+	public void writeToFile(String person, String pick){
+		draftPick = person + "; " + pick;
 		try{
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		fop = new FileOutputStream(draftList);
@@ -39,6 +39,8 @@ public class Methods{
 		} catch (IOException e){
 			e.printStackTrace();
 		} 
+		validPokemon.replaceFirst(pick, "");
+		
 		
 	}
 	public String[][] pickPerson(){
@@ -80,7 +82,7 @@ public class Methods{
 	}
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
 
-        if(checkValidBuilder.toString().contains(pokemonChoice)){
+        if(validPokemon.contains(pokemonChoice)){
 
         return true;
         
@@ -106,6 +108,7 @@ public class Methods{
         } catch (IOException ioe){
         	
         }
+        
 	}
 	
 	public Methods(){

@@ -98,10 +98,11 @@ public class Menus {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			pokemonChoice = null;
 			pokemonChoice = enterPokemon.getText();
 			draft.setVisible(false);
 			
-			if(method.checkValidChoice(pokemonChoice)){
+			if(method.checkValidChoice(pokemonChoice) && pokemonChoice != null){
 				
 				enterPokemon.setText(" ");
 				enterPokemon.setForeground(black);
@@ -191,7 +192,7 @@ public class Menus {
 		draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel helloLabel = new JLabel();
-		if(numberOfPos == "0"){
+		if(roundNumber == 0 && numberOfPos == "0"){
 		contestantsNames = method.pickPerson();
 		}else if(numberOfPos == String.valueOf(numberOfContestants)){
 			
@@ -210,7 +211,7 @@ public class Menus {
 		//System.out.println(indexOfPos);
 		nextPerson = contestantsNames[indexOfPos][0];
 		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below (Round Number " + roundNumber + ")");
-		helloLabel.setBounds(250, 100, 300, 50);
+		helloLabel.setBounds(200, 100, 400, 50);
 		draft.add(helloLabel);
 		
 		

@@ -81,7 +81,8 @@ public class Methods{
 
 	}
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
-
+		System.out.println(pokemonChoice);
+		System.out.println(validPokemon);
         if(validPokemon.contains(pokemonChoice)){
 
         return true;

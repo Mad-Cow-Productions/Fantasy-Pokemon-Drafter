@@ -45,6 +45,7 @@ public class Menus {
 	public static void Initiate(){
 		method.createDir();
 		method.createFile();
+		method.readConfig();
 		enterNames = new JFrame();
 		enterNames.setLocation(0,0);							//this is where the JFrame is created and configured
 		enterNames.setLayout(null);

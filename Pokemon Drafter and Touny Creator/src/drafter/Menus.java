@@ -108,7 +108,7 @@ public class Menus {
 				
 				
 				
-				method.writeToFile(nextPerson, pokemonChoice);
+				method.writeToString(nextPerson, pokemonChoice);
 				
 				numberOfPos = String.valueOf(Integer.parseInt(numberOfPos) + 1);
 				
@@ -191,8 +191,12 @@ public class Menus {
 		draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel helloLabel = new JLabel();
+		if(numberOfPos == "0"){
 		contestantsNames = method.pickPerson();
-		
+		}else if(numberOfPos == String.valueOf(numberOfContestants)){
+			
+			contestantsNames = method.getNextRoundOrder();
+		}
 		/*for(int i = 0; i < numberOfContestants; i++){
 			
 			for(int e = 0; e <= 1; e++){
@@ -205,7 +209,7 @@ public class Menus {
 		int indexOfPos = getIndexOf(numberOfPos, contestantsNames);
 		//System.out.println(indexOfPos);
 		nextPerson = contestantsNames[indexOfPos][0];
-		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below");
+		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below (Round Number " + roundNumber + ")");
 		helloLabel.setBounds(250, 100, 300, 50);
 		draft.add(helloLabel);
 		
@@ -259,7 +263,7 @@ public class Menus {
 	
 	public static void main(String[] args) {
 		Initiate();
-		
+		method.writeToFile();
 		
 		
 		

@@ -14,6 +14,7 @@ public class Methods{
 	private String validPokemon;
 	private String draftPick;
 	StringBuilder chosen = new StringBuilder();
+	StringBuilder chosenPokemon = new StringBuilder();
 	
 
 	public void createDir(){
@@ -59,16 +60,17 @@ public class Methods{
 		
 	}
 	public String[][] getNextRoundOrder(){ //this method will choose the order of the next round for each contestant
-	String[][] contestantsNames = menu.getContestantsNames();
-	int numberOfContestants = menu.getNumberOfContestants();
+		String[][] contestantsNames = menu.getContestantsNames();
+		int numberOfContestants = menu.getNumberOfContestants();
         
                 
         
-
-                for(int i=0; i > numberOfContestants; i++){
+				
+                for(int i=0; i < numberOfContestants; i++){
                 	int number = Integer.parseInt(contestantsNames[i][1]);
-                        int newPos = -(number) +(numberOfContestants - 1);
+                        int newPos = -(number) + (numberOfContestants- 1);
                         contestantsNames[i][1] = String.valueOf(newPos);
+                        
 
                 
                 
@@ -81,7 +83,7 @@ public class Methods{
 	}
 	public boolean checkValidChoice(String pokemonChoice){   //this method will check if the pokemonChoice is a valid one
 		
-        if(validPokemon.contains(pokemonChoice)){
+        if(validPokemon.contains(pokemonChoice) && !(chosenPokemon.toString().contains(pokemonChoice))){
 
         return true;
         
@@ -111,7 +113,8 @@ public class Methods{
 	}
 	public void writeToString(String chooser, String pick){
 		chosen.append(chooser + "  " + pick);
-		validPokemon.replaceFirst(pick, "");
+		
+		chosenPokemon.append(pick);
 	}
 	
 	public Methods(){

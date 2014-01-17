@@ -114,14 +114,14 @@ public class Menus {
 				numberOfPos = String.valueOf(Integer.parseInt(numberOfPos) + 1);
 				
 				
-				if(Integer.parseInt(numberOfPos) < numberOfContestants - 1){
+				if(Integer.parseInt(numberOfPos) < numberOfContestants ){
 					
 					pickPokemon(numberOfPos);
 					
 				}else{
 					roundNumber = roundNumber + 1;
 					
-					if(roundNumber > 10){
+					if(roundNumber >= 10){
 						
 					}else{
 						contestantsNames = method.getNextRoundOrder();
@@ -193,10 +193,8 @@ public class Menus {
 		
 		JLabel helloLabel = new JLabel();
 		if(roundNumber == 0 && numberOfPos == "0"){
-		contestantsNames = method.pickPerson();
-		}else if(numberOfPos == String.valueOf(numberOfContestants)){
-			
-			contestantsNames = method.getNextRoundOrder();
+			System.out.println("Ran the If Statement");
+			contestantsNames = method.pickPerson();
 		}
 		/*for(int i = 0; i < numberOfContestants; i++){
 			

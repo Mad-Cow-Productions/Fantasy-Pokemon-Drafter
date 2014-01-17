@@ -12,7 +12,7 @@ public class Methods{
 	File configFile = new File(configFileName);
 	Menus menu = new Menus();
 	private String validPokemon;
-	private String draftPick;
+	
 	StringBuilder chosen = new StringBuilder();
 	StringBuilder chosenPokemon = new StringBuilder();
 	
@@ -30,6 +30,7 @@ public class Methods{
 	
 	@SuppressWarnings("resource")
 	public void writeToFile(){
+		
 		try{
 		FileOutputStream fop = new FileOutputStream(draftList, true);
 		fop = new FileOutputStream(draftList);
@@ -112,7 +113,7 @@ public class Methods{
         
 	}
 	public void writeToString(String chooser, String pick){
-		chosen.append(chooser + "  " + pick);
+		chosen.append("\n" + chooser + ";" + pick);
 		
 		chosenPokemon.append(pick);
 	}

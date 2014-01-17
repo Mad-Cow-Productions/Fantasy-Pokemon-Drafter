@@ -1,10 +1,10 @@
 package drafter;
 import java.awt.Color;
-import java.awt.Component;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
+
 
 import javax.swing.*;
 
@@ -31,6 +31,8 @@ public class Menus {
 	private static Color red = new Color(250,0,0);
 	private static Color black = new Color(0,0,0);
 	private static Toolkit tk = Toolkit.getDefaultToolkit();
+	private static JButton nextChoice;
+	private static JLabel helloLabel;
 	
 	
 	
@@ -68,7 +70,7 @@ public class Menus {
 		enterNames.setVisible(true);
 		
 		enterPokemon = new JTextField();
-		enterPokemon.setBounds(250, 250, 200, 50);
+		enterPokemon.setBounds(250, 250, 200, 25);
 	}
 	
 	static class confirmNumber implements ActionListener{
@@ -104,7 +106,7 @@ public class Menus {
 			
 			if(method.checkValidChoice(pokemonChoice) && pokemonChoice != null){
 				
-				enterPokemon.setText(" ");
+				enterPokemon.setText(null);
 				enterPokemon.setForeground(black);
 				
 				
@@ -122,6 +124,13 @@ public class Menus {
 					roundNumber = roundNumber + 1;
 					
 					if(roundNumber >= 10){
+						
+							method.writeToFile();
+							helloLabel.setText("That is the End of the Draft");
+							
+							draft.remove(nextChoice);
+							draft.remove(enterPokemon);
+							draft.setVisible(true);
 						
 					}else{
 						contestantsNames = method.getNextRoundOrder();
@@ -191,9 +200,9 @@ public class Menus {
 		draft.setSize(tk.getScreenSize().width, tk.getScreenSize().height); //gets the screen size and sets the JFrame to fit the whole screen
 		draft.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JLabel helloLabel = new JLabel();
+		helloLabel = new JLabel();
 		if(roundNumber == 0 && numberOfPos == "0"){
-			System.out.println("Ran the If Statement");
+			
 			contestantsNames = method.pickPerson();
 		}
 		/*for(int i = 0; i < numberOfContestants; i++){
@@ -208,20 +217,21 @@ public class Menus {
 		int indexOfPos = getIndexOf(numberOfPos, contestantsNames);
 		//System.out.println(indexOfPos);
 		nextPerson = contestantsNames[indexOfPos][0];
-		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below (Round Number " + roundNumber + ")");
+		helloLabel.setText(nextPerson + " Please Give your Choice in the Box Below (Round Number " + (roundNumber + 1) + ")");
 		helloLabel.setBounds(200, 100, 400, 50);
 		draft.add(helloLabel);
 		
 		
 		draft.add(enterPokemon);
 		
-		JButton nextChoice = new JButton();
+		nextChoice = new JButton();
 		nextChoice.setText("Finalize your Decision");
-		nextChoice.setBounds(475, 250, 25,25);
+		nextChoice.setBounds(475, 250, 200,25);
 		nextChoice.addActionListener(new nextChoiceOfPerson());
 		draft.add(nextChoice);
 		
 		draft.setVisible(true);
+		
 		
 		
 		
@@ -262,7 +272,7 @@ public class Menus {
 	
 	public static void main(String[] args) {
 		Initiate();
-		method.writeToFile();
+		
 		
 		
 		
